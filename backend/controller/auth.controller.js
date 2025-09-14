@@ -1,12 +1,12 @@
 import {User} from "../model/user.model.js"
 import { addTokenCookie, clearCookie } from "../util/cookie.js";
 import {generateAccessToken, generateRefreshToken} from "../util/jwt.js"
-import redis, { addCache, removeCache } from "../util/redis.js"
+import { addCache, removeCache } from "../util/redis.js"
 
 export const registerUser = async (req, res) => {
     try {
-        const {name, email, password} = req.body;
-        const userToSave = new User({name, email, password});
+        const {name, email, password, role} = req.body;
+        const userToSave = new User({name, email, password, role});
         const userSaved = await userToSave.save();
         res.status(201).send({message: "User is registered", data: userSaved});
     } catch(err){
@@ -23,11 +23,11 @@ export const loginUser = async (req, res) => {
         const isMatch = await userByEmail.comparePassword(password);
         if(!isMatch) throw new Error("Username or password in incorrect");
 
-        const accessToken = generateAccessToken(userByEmail);
-        const refreshToken = generateRefreshToken(userByEmail);
+        const accessToken = await generateAccessToken(userByEmail);
+        const refreshToken = await generateRefreshToken(userByEmail);
         await addTokenCookie(res, accessToken, refreshToken);
 
-        addCache(userByEmail, refreshToken, 7 * 24 * 60 * 60);
+        addCache(userByEmail.email, refreshToken, 7 * 24 * 60 * 60);
 
         res.status(200).send({message: "User is logged in successfully"});
     } catch(err) {
@@ -38,6 +38,7 @@ export const loginUser = async (req, res) => {
 export const logoutUser = async(req, res) => {
     try {
         const user = req.user;
+        console.log(user);
         await clearCookie(res);
         await removeCache(user.email);
 
