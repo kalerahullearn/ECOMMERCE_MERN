@@ -8,5 +8,10 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-export default cloudinary;
-
+export const uploadProductImage = async (imagePath) => {
+    var cloudinaryResponse = null;
+    if(imagePath){
+        cloudinaryResponse = await cloudinary.uploader.upload(imagePath, {folder: "products"});
+    }
+    return cloudinaryResponse?.secure_url ? cloudinaryResponse?.secure_url : "";
+}
