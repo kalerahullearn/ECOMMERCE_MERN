@@ -5,12 +5,16 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: [true, "Name is required"]
     },
+    description: {
+        type: String,
+        required: [true, "Description is required"]
+    },
     category: {
         type: String,
         required: [true, "Category is required"]
     },
     isFeatured: {
-        type: boolean,
+        type: String,
         default: false
     },
     price: {
@@ -23,4 +27,4 @@ const productSchema = new mongoose.Schema({
     }
 }, {timestamp: true});
 
-export default Product = mongoose.model("Product", productSchema);
+export const Product = mongoose.model("Product", productSchema);

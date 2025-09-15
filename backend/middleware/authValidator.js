@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { getCookie } from "../util/cookie.js";
 
-export const tokenValidator = async (req, res, next) => {
+export const authValidator = async (req, res, next) => {
     
     try {
         const accessToken = getCookie(req, "accessToken");
