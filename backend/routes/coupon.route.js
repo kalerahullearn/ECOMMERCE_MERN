@@ -1,11 +1,13 @@
 import express from "express"
-import {validateCoupon, getCoupon, addCoupon, toggleActive} from "../controller/coupon.controller.js"
+import {validateCoupon, getCouponsByUserId, addCoupon, toggleActive} from "../controller/coupon.controller.js"
+import { authValidator } from "../middleware/authValidator.js";
+import { roleValidator } from "../middleware/roleValidator.js";
 
 const router = express.Router();
 
-router.get("/validate", validateCoupon);
-router.get("/:id", getCoupon);
-router.post("/", addCoupon);
-router.patch("/toggle/active", toggleActive);
+router.get("/validate", authValidator, validateCoupon);
+router.get("/",  authValidator, getCouponsByUserId);
+router.post("/",  authValidator, roleValidator, addCoupon);
+router.patch("/toggle/active",  authValidator, authValidator, toggleActive);
 
 export default router;

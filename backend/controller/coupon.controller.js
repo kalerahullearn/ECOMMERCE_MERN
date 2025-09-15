@@ -1,11 +1,11 @@
 import {Coupon} from "../model/coupon.model.js"
 
 
-export const getCoupon = async (req, res) => {
-    const couponById = Coupon.findById({
+export const getCouponsByUserId = async (req, res) => {
+    const couponsByUserId = await Coupon.find({
         userId: req.user.id
     });
-    res.status(200).json({message: "Coupon is fetched", data: couponById});
+    res.status(200).json({message: "Coupon is fetched", data: couponsByUserId});
 }
 
 export const validateCoupon = async (req, res) => {
@@ -37,7 +37,7 @@ export const addCoupon = async (req, res) => {
         const userId = req.user.id;
         const {code, discountPercentage, expirationDate, isActive} = req.body;
 
-        const couponCreated = Coupon.create(
+        const couponCreated = await Coupon.create(
             {
                 code, 
                 discountPercentage, 

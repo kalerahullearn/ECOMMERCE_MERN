@@ -3,7 +3,7 @@ import mongoose from "mongoose"
 const couponSchema = new mongoose.Schema({
     code: {
         type: String, 
-        unique: true
+        unique: [true, "Coupon code is already added"]
     },
     discountPercentage: {
         type: Number,
@@ -22,9 +22,13 @@ const couponSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
-        required: true,
-        unique: true
+        required: true
     }
 }, {timestamps: true});
 
 export const Coupon = mongoose.model("Coupon", couponSchema);
+
+
+Coupon.syncIndexes()
+  .then(() => console.log("Indexes synced for Coupon"))
+  .catch(err => console.error("Index sync error:", err));
