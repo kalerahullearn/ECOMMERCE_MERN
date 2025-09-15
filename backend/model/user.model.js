@@ -25,7 +25,18 @@ const userSchema  = new mongoose.Schema({
         type: String,
         required: [true, "password is required"],
         minlength: 6,
-    }
+    },
+    cartItems: [
+    {
+        quantity: {
+            type: Number,
+            default: 1
+        },
+        product: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Product"
+        }
+    }]
 }, { timestamps: true })
 
 userSchema.pre("save", async function (next) {

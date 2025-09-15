@@ -49,3 +49,8 @@ export const logoutUser = async(req, res) => {
     
 }
 
+
+export const getUserById = async(userId) => {
+    return await User.findById(userId);
+}
+

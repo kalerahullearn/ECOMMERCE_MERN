@@ -17,6 +17,7 @@ export const getFeaturedProducts = async (req, res) => {
         featuredProducts = await Product.find({
             isFeatured: "true"
         });
+        addCache("featured", featuredProducts);
         res.status(200).json({message: "Featured Products are fetched", data: featuredProducts});
     } catch(err){
         res.status(200).json({message: err.message});
