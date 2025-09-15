@@ -14,7 +14,7 @@ export const validateCoupon = async (req, res) => {
         const couponByCode = await Coupon.findOne({code, userId: req.user.id});
         if(!couponByCode) throw new Error("Coupon code not found");
         if(!couponByCode.isActive) throw new Error("Coupon code is not active");
-        if(!couponByCode.expirationDate < new Date()) throw new Error("Coupon code is expired");
+        if(couponByCode.expirationDate < new Date()) throw new Error("Coupon code is expired");
 
         couponByCode.isActive = false;
         await couponByCode.save();
@@ -35,13 +35,15 @@ export const addCoupon = async (req, res) => {
     
     try {
         const userId = req.user.id;
-        const {code, discountPercentage, expirationDate, isActive} = req.body;
-
+        const {code, discountPercentage, expirationDate:expirationDateString, isActive} = req.body;
+        console.log(expirationDateString);
+        const expirationDate = new Date(expirationDateString);
+        console.log(expirationDate);
         const couponCreated = await Coupon.create(
             {
                 code, 
                 discountPercentage, 
-                expirationDate, 
+                expirationDate:expirationDate, 
                 isActive,
                 userId
             }
