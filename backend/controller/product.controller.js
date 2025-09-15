@@ -53,18 +53,19 @@ export const updateProduct = async (req, res) => {
     try {
         const {id} = req.params;
         const {name, description, category, price, isFeatured} = req.body;
-        const existingProduct = await getProductById(id);
-        const productToUpdate = new Product({
-            name: name || existingProduct.name, 
-            description: description || existingProduct.description, 
-            category: category || existingProduct.category, 
-            price: price || existingProduct.price, 
-            isFeatured: isFeatured || existingProduct.isFeatured
-        });
-        const productUpdated = Product.findByIdAndUpdate(id, productToUpdate);
+        const existingProduct = await Product.findById(id);
+        
+        existingProduct.name= name || existingProduct.name;
+        existingProduct.description= description || existingProduct.description;
+        existingProduct.category= category || existingProduct.category;
+        existingProduct.price= price || existingProduct.price;
+        existingProduct.isFeatured= isFeatured || existingProduct.isFeatured;
+
+        const productUpdated = await existingProduct.save();
         removeCache("featured");
         res.status(200).send({message: "Product is updated", data: productUpdated});
     } catch(err){
+        console.error(err);
         res.status(400).send({message: err.message});
     }
 }

@@ -12,7 +12,7 @@ router.get("/featured", authValidator, getFeaturedProducts);
 router.get("/:id", authValidator, getProductById);
 
 router.post("/", authValidator, roleValidator, upload.single("image"), createProduct);
-router.patch("/", authValidator, roleValidator, updateProduct);
+router.patch("/:id", authValidator, roleValidator, updateProduct);
 router.delete("/:id", authValidator, roleValidator, deleteProduct);
 
 
