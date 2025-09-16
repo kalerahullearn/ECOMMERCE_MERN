@@ -19,7 +19,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/product", productRoutes);
 app.use("/api/v1/cart", cartRoutes);
 app.use("/api/v1/coupon", couponRoutes);
-app.use("/api/v1/pay", paymentRoutes);
+app.use("/api/v1/payments", paymentRoutes);
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
