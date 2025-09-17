@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - ShopEasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <div class="flex h-screen">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-indigo-600 text-white flex flex-col">
+      <div class="p-6 text-2xl font-bold">ShopEasy Admin</div>
+      <nav class="flex flex-col mt-6">
+        <a href="admin.html" class="px-6 py-3 hover:bg-indigo-500">Dashboard</a>
+        <a href="analytics.html" class="px-6 py-3 hover:bg-indigo-500">Analytics</a>
+        <a href="index.html" class="px-6 py-3 hover:bg-indigo-500">View Store</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-12">
+      <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h2 class="text-xl font-bold">Total Sales</h2>
+          <p class="mt-2 text-gray-700 text-2xl">$12,345</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h2 class="text-xl font-bold">Products</h2>
+          <p class="mt-2 text-gray-700 text-2xl">120</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow text-center">
+          <h2 class="text-xl font-bold">Orders</h2>
+          <p class="mt-2 text-gray-700 text-2xl">75</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+</body>
+</html>

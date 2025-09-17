@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart - ShopEasy</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow-md">
+    <div class="container mx-auto flex justify-between items-center p-4">
+      <a href="index.html" class="text-2xl font-bold text-indigo-600">ShopEasy</a>
+      <div>
+        <a href="login.html" class="text-gray-700 hover:text-indigo-600 px-4">Login</a>
+        <a href="signup.html" class="text-gray-700 hover:text-indigo-600 px-4">Sign Up</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Cart Section -->
+  <section class="container mx-auto py-12">
+    <h2 class="text-3xl font-bold mb-8 text-center">Your Cart</h2>
+    <div class="bg-white shadow-md rounded-lg p-6">
+      <!-- Cart Item -->
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-4">
+          <img src="https://via.placeholder.com/80" alt="Product" class="w-20 h-20 object-cover rounded">
+          <div>
+            <h3 class="font-semibold">Product 1</h3>
+            <p class="text-gray-600">$29.99</p>
+          </div>
+        </div>
+        <div>
+          <input type="number" value="1" class="w-16 border rounded p-1 text-center">
+        </div>
+        <p class="font-semibold">$29.99</p>
+        <button class="text-red-500 hover:text-red-700 font-bold">Remove</button>
+      </div>
+
+      <div class="flex justify-between mt-6 text-lg font-bold">
+        <span>Total:</span>
+        <span>$29.99</span>
+      </div>
+      <button class="mt-4 w-full bg-indigo-600 text-white py-3 rounded hover:bg-indigo-500">Checkout</button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-white shadow-inner py-6 text-center mt-12">
+    <p class="text-gray-700">&copy; 2025 ShopEasy. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
