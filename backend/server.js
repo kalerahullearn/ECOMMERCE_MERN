@@ -1,18 +1,27 @@
 import express from "express"
+import cookieParser from "cookie-parser";
 import dotenv from "dotenv"
 dotenv.config();
 import authRoutes from "./routes/auth.route.js"
 import { connectDb } from "./util/db.js";
-// import productRoutes from "./routes/product.route.js"
-// import cartRoutes from "./routes/cart.route.js"
+import productRoutes from "./routes/product.route.js"
+import cartRoutes from "./routes/cart.route.js"
+import couponRoutes from "./routes/coupon.route.js"
+import paymentRoutes from "./routes/payment.route.js";
+import analyticsRoutes from "./routes/analytics.route.js"
+
 
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 app.use("/api/v1/auth", authRoutes);
-// app.use("/api/v1/product", productRoutes);
-// app.use("/api/v1/cart", cartRoutes);
+app.use("/api/v1/product", productRoutes);
+app.use("/api/v1/cart", cartRoutes);
+app.use("/api/v1/coupon", couponRoutes);
+app.use("/api/v1/payments", paymentRoutes);
+app.use("/api/v1/analytics", analyticsRoutes);
 
 const PORT = process.env.PORT;
 const MONGO_URI = process.env.MONGO_URI;
