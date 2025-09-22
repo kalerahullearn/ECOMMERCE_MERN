@@ -31,7 +31,7 @@ export const loginUser = async (req, res) => {
 
         addCache(userByEmail.email, refreshToken, 7 * 24 * 60 * 60);
 
-        res.status(200).send({message: "User is logged in successfully"});
+        res.status(200).send({message: "User logged in successfully"});
     } catch(err) {
         res.status(401).json({message: err.message});   
     }
