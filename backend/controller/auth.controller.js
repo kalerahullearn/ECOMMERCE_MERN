@@ -29,9 +29,9 @@ export const loginUser = async (req, res) => {
         const refreshToken = await generateRefreshToken(userByEmail);
         await addTokenCookie(res, accessToken, refreshToken);
 
+        const {password:passwordRemoved, ...userToReturn} = userByEmail.toObject();
         addCache(userByEmail.email, refreshToken, 7 * 24 * 60 * 60);
-
-        res.status(200).send({message: "User logged in successfully"});
+        res.status(200).send({message: "User logged in successfully", data: userToReturn});
     } catch(err) {
         res.status(401).json({message: err.message});   
     }

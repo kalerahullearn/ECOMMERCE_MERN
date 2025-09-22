@@ -3,9 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { login } from "../services/UserService";
 import { isSuccess } from "../utils/Utils";
 import { showToast } from "../utils/ShowToast";
+import { setUser } from "../redux/userRedux";
+import { useDispatch } from "react-redux";
 
 export const LoginPage = () => {
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [email, setEmail] = useState(""); 
     const [password, setPassword] = useState(""); 
@@ -14,9 +17,12 @@ export const LoginPage = () => {
         e.preventDefault();
         const loginDetails = {email, password};
         const res = await login(loginDetails);
-        
         showToast(res);
-        if(isSuccess(res)) navigate("/")
+        if(isSuccess(res)) {
+            console.log(res.data.data);
+            dispatch(setUser(res.data));
+            navigate("/");
+        }
     }
 
     return (
