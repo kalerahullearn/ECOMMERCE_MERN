@@ -7,6 +7,8 @@ export const registerUser = async (req, res) => {
     try {
         const {name, email, password, role} = req.body;
         const userToSave = new User({name, email, password, role});
+        const userExists = await User.findOne({email: email});
+        if(userExists) return res.status(400).send({message: "User is already registered"});
         const userSaved = await userToSave.save();
         res.status(201).send({message: "User is registered", data: userSaved});
     } catch(err){

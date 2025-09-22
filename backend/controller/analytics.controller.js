@@ -1,6 +1,6 @@
 import { Product } from "../model/product.model.js";
 import { User } from "../model/user.model.js";
-import { Order } from "../model/order.model.js"
+import  Order from "../model/order.model.js"
 
 export const getAnalyticsReport = async (req, res) => {
     try {
