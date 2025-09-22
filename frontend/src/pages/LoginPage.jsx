@@ -19,7 +19,6 @@ export const LoginPage = () => {
         const res = await login(loginDetails);
         showToast(res);
         if(isSuccess(res)) {
-            console.log(res.data.data);
             dispatch(setUser(res.data));
             navigate("/");
         }

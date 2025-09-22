@@ -18,3 +18,12 @@ export const login = async (login) => {
        return getErrResponse(err);
     }
 }
+
+export const getMe = async () => {
+    try{
+        const res = await axios.post("/api/v1/auth/me");
+        return { status: res.status, data: res.data };
+    }catch(err){
+       return getErrResponse(err);
+    }
+}

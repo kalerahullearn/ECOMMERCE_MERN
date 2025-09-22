@@ -56,3 +56,7 @@ export const getUserById = async(userId) => {
     return await User.findById(userId);
 }
 
+
+export const getMe = async (req, res) => {
+    res.status(200).json({data: req.user});   
+}
